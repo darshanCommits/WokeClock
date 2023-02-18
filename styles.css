@@ -1,0 +1,12 @@
+main{
+    font-family: 'Spline Sans Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;    
+}
+
+
+

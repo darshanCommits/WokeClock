@@ -9,22 +9,12 @@ function showTime() {
 
   var am_pm = "AM";
 
-  if (hour > 12) {
-    hour -= 12;
-    am_pm = "PM";
-  }
-
-  if (hour == 0) {
-    hour = 12;
-    am_pm = "AM";
-  }
+  if (hour > 12) am_pm = "PM";
+  if (hour == 0) am_pm = "AM";
 
   hour = Number(hour > 10 ? hour : "0" + hour);
   min = Number(min > 10 ? min : "0" + min);
   sec = Number(sec > 10 ? sec : "0" + sec);
-  var red, green, blue, currentColor;
-
-  //this function glitching. value back & forth ho rhi and not updating and vo red ki value to messed up hai hi.
 
   function formatColor(i) {
     if (i.length < 2) {
@@ -33,9 +23,9 @@ function showTime() {
     return i;
   }
   function timeColor(hour, min, sec) {
-    red = Math.round(255 * (hour / 23)).toString(16);
-    green = Math.round(255 * (min / 59)).toString(16);
-    blue = Math.round(255 * (sec / 59)).toString(16);
+    var red = Math.round(255 * (hour / 23)).toString(16);
+    var green = Math.round(255 * (min / 59)).toString(16);
+    var blue = Math.round(255 * (sec / 59)).toString(16);
 
     red = formatColor(red);
     green = formatColor(green);
@@ -43,10 +33,17 @@ function showTime() {
 
     return (red + green + blue).toUpperCase();
   }
-  document.getElementById("color").innerHTML = timeColor(hour, min, sec);
-  document.body.style.backgroundColor = "#" + timeColor(hour, min, sec);
+  var grad1 = "#" + timeColor(hour, min, sec);
+  var grad2 = "#" + timeColor(hour - 12, min, sec);
+  var gradRotation = sec * 6;
+  document.getElementById("color").innerHTML = grad1 + " to " + grad2;
 
-  var currentTime = hour + ":" + min + ":" + sec + am_pm;
+  
+  document.body.style.background = `linear-gradient(${gradRotation}deg, ${grad1} 0%, ${grad2} 100%)`;
+
+
+
+  var currentTime = hour + ":" + min + ":" + sec + " " + am_pm;
 
   document.getElementById("time").innerHTML = currentTime;
 }
