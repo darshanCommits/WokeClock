@@ -4,17 +4,13 @@ function showTime() {
   const time = new Date();
 
   var hour = time.getHours();
+  hour = hour > 12 ? hour % 12 : hour;
   var min = time.getMinutes();
   var sec = time.getSeconds();
+  
+  var am_pm = hour > 12 ? "PM" : "AM";
 
-  var am_pm = "AM";
-
-  if(hour>12) {
-    am_pm = "PM";
-    hour %= 2;
-  }
-
-
+  if (am_pm == "AM") hour = 12;
 
   function formatColor(i) {
     if (i.length < 2) {
@@ -23,7 +19,6 @@ function showTime() {
     return i;
   }
   function timeColor(hour, min, sec) {
-
     var red = Math.round(255 * (hour / 23)).toString(16);
     var green = Math.round(255 * (min / 59)).toString(16);
     var blue = Math.round(255 * (sec / 59)).toString(16);
@@ -35,8 +30,11 @@ function showTime() {
     return (red + green + blue).toUpperCase();
   }
 
-  var grad1 = "#" + timeColor(hour, min, sec);
-  if ((am_pm = "PM")) var grad2 = "#" + timeColor(hour + 6, min, sec);
+  var grad1 = "#" + timeColor(hour + 6, min, sec);
+  if (am_pm == "PM") {
+    var grad2 = "#" + timeColor(hour - 6, min, sec);
+  } else var grad2 = "#" + timeColor((hour + 12) / 2, min, sec);
+
   var gradRotation = sec * 6;
   document.getElementById("color").innerHTML = grad1 + " to " + grad2;
 
