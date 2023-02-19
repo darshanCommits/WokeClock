@@ -5,7 +5,12 @@ main{
     text-align: center;
     align-items: center;
     justify-content: center;
-    height: 100vh;    
+    height: 100vh;
+}
+
+#time {
+    font-size: 6rem;
+    color: rgba(31, 28, 28, 0.726)
 }
 
 

@@ -1,48 +1,36 @@
-let colorInterval;
+function timeToRGB(hour, min, sec) {
+  let totalSeconds = hour * 12 + min * 6 + sec * 3; //Total sec as of RN
+  let percentOfDay = totalSeconds / (24 * 6 * 6); //Sec as of RN / Total sec of entire day.
+
+  let red = Math.floor(255 * percentOfDay);
+  let green = Math.floor(255 * (1 - percentOfDay));
+  let blue = Math.floor(128 * Math.abs(percentOfDay - 0.5) * 2);
+
+  color = [red, green, blue];
+  return color;
+}
 
 function showTime() {
   const time = new Date();
 
-  var hour = time.getHours();
-  hour = hour > 12 ? hour % 12 : hour;
-  var min = time.getMinutes();
-  var sec = time.getSeconds();
-  
-  var am_pm = hour > 12 ? "PM" : "AM";
+  let hour = time.getHours();
+  let min = time.getMinutes();
+  let sec = time.getSeconds();
 
-  if (am_pm == "AM") hour = 12;
-
-  function formatColor(i) {
-    if (i.length < 2) {
-      i = "0" + i;
-    }
-    return i;
-  }
-  function timeColor(hour, min, sec) {
-    var red = Math.round(255 * (hour / 23)).toString(16);
-    var green = Math.round(255 * (min / 59)).toString(16);
-    var blue = Math.round(255 * (sec / 59)).toString(16);
-
-    red = formatColor(red);
-    green = formatColor(green);
-    blue = formatColor(blue);
-
-    return (red + green + blue).toUpperCase();
-  }
-
-  var grad1 = "#" + timeColor(hour + 6, min, sec);
-  if (am_pm == "PM") {
-    var grad2 = "#" + timeColor(hour - 6, min, sec);
-  } else var grad2 = "#" + timeColor((hour + 12) / 2, min, sec);
-
-  var gradRotation = sec * 6;
-  document.getElementById("color").innerHTML = grad1 + " to " + grad2;
-
-  document.body.style.background = `linear-gradient(${gradRotation}deg, ${grad1} 0%, ${grad2} 100%)`;
-
-  var currentTime = hour + ":" + min + ":" + sec + " " + am_pm;
-
+  let currentTime = hour + ":" + min + ":" + sec;
   document.getElementById("time").innerHTML = currentTime;
+
+  let grad1 = timeToRGB(hour, min, sec);
+  let grad2 = timeToRGB(hour%12, min%12, sec%12);
+  let red = [grad1[0], grad2[0]];
+  let green = [grad1[1], grad2[1]];
+  let blue = [grad1[2], grad2[2]];
+
+  console.log(red, green, blue);
+  let color1 = `RGB(${red[0]}, ${green[0]}, ${blue[0]})`;
+  let color2 = `RGB(${red[1]}, ${green[1]}, ${blue[1]})`;
+
+  document.body.style.background = `linear-gradient(${sec * 6}deg, ${color1} 0%, ${color2} 100%)`;
 }
 
 setInterval(showTime, 1000);
