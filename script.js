@@ -9,6 +9,13 @@ function timeToRGB(hour, min, sec) {
   color = [red, green, blue];
   return color;
 }
+function formatTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+
+  return i;
+}
 
 function showTime() {
   const time = new Date();
@@ -16,12 +23,10 @@ function showTime() {
   let hour = time.getHours();
   let min = time.getMinutes();
   let sec = time.getSeconds();
-
-  let currentTime = hour + ":" + min + ":" + sec;
-  document.getElementById("time").innerHTML = currentTime;
+  let am_pm = "AM";
 
   let grad1 = timeToRGB(hour, min, sec);
-  let grad2 = timeToRGB(hour%12, min%12, sec%12);
+  let grad2 = timeToRGB(hour % 12, min % 12, sec % 12);
   let red = [grad1[0], grad2[0]];
   let green = [grad1[1], grad2[1]];
   let blue = [grad1[2], grad2[2]];
@@ -30,7 +35,20 @@ function showTime() {
   let color1 = `RGB(${red[0]}, ${green[0]}, ${blue[0]})`;
   let color2 = `RGB(${red[1]}, ${green[1]}, ${blue[1]})`;
 
-  document.body.style.background = `linear-gradient(${sec * 6}deg, ${color1} 0%, ${color2} 100%)`;
+  if (hour >= 12) {
+    hour %= 12;
+    am_pm = "PM";
+  }
+
+  hour = formatTime(hour);
+  min = formatTime(min);
+  sec = formatTime(sec);
+
+  let currentTime = `${hour}:${min}:${sec} ${am_pm}`;
+  let gradRotation = sec * 6;
+  
+  document.getElementById("time").innerHTML = currentTime;
+  document.body.style.background = `linear-gradient(${gradRotation}deg, ${color1} 0%, ${color2} 100%)`;
 }
 
 setInterval(showTime, 1000);
