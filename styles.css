@@ -40,12 +40,12 @@ header {
   justify-content: center;
   text-align: center;
   border-radius: 0 0 30% 30%;
-  background-color: rgba(31, 28, 28, 0.8);
+  background-color: rgba(31, 28, 28, 0.3);
 }
 
 footer {
   height: 15vh;
-  background-color: rgba(31, 28, 28, 0.8);
+  background-color: rgba(31, 28, 28, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
