@@ -85,8 +85,8 @@ function showTime() {
     temp.select();
     document.execCommand("copy");
     setTimeout(() => {
-      document.querySelector(".hidden").style.opacity = "1";
       document.querySelector("main").style.cursor = "pointer";
+      document.querySelector(".hidden").style.opacity = "1";
     }, 300);
   });
   document.querySelector(".hidden").style.opacity = "0";
