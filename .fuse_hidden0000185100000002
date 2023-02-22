@@ -1,0 +1,68 @@
+body,
+h1 {
+  margin: 0;
+  font-family: "Spline Sans Mono", monospace;
+  color: rgba(31, 28, 28, 0.726);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+#time {
+  font-size: 5rem;
+  color: rgba(31, 28, 28, 0.9);
+}
+
+@media only screen and (max-width: 600px) {
+  #time {
+    font-size: 3rem;
+    padding: 0 10px 0;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
+  span{
+    font-size: .7rem;
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  height: 15vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0 0 30% 30%;
+  background-color: rgba(31, 28, 28, 0.3);
+}
+
+footer {
+  height: 15vh;
+  background-color: rgba(31, 28, 28, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 30% 30% 0 0;
+}
+
+
+
+a {
+  margin: 2%;
+  color: rgba(28, 28, 31, 0.726);
+
+}
+
+span {
+  position: relative;
+  left: 20px;
+  display: inline-block;
+}

@@ -1,3 +1,35 @@
+function rgbToHex(red, green, blue) {
+  const hexDigits = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ];
+
+  let redQ = hexDigits[Math.floor(red / 16)];
+  let greenQ = hexDigits[Math.floor(green / 16)];
+  let blueQ = hexDigits[Math.floor(blue / 16)];
+
+  let redR = hexDigits[red % 16];
+  let greenR = hexDigits[green % 16];
+  let blueR = hexDigits[blue % 16];
+
+  color = "#" + redQ + redR + greenQ + greenR + blueQ + blueR;
+  return color;
+}
+
 function timeToRGB(hour, min, sec) {
   let totalSeconds = hour * 12 + min * 6 + sec * 3; //Total sec as of RN
   let percentOfDay = totalSeconds / (24 * 6 * 6); //Sec as of RN / Total sec of entire day.
@@ -13,7 +45,6 @@ function formatTime(i) {
   if (i < 10) {
     i = "0" + i;
   }
-
   return i;
 }
 
@@ -31,10 +62,6 @@ function showTime() {
   let green = [grad1[1], grad2[1]];
   let blue = [grad1[2], grad2[2]];
 
-  console.log(red, green, blue);
-  let color1 = `RGB(${red[0]}, ${green[0]}, ${blue[0]})`;
-  let color2 = `RGB(${red[1]}, ${green[1]}, ${blue[1]})`;
-
   if (hour >= 12) {
     hour %= 12;
     am_pm = "PM";
@@ -45,10 +72,13 @@ function showTime() {
   sec = formatTime(sec);
 
   let currentTime = `${hour}:${min}:${sec} ${am_pm}`;
-  let gradRotation = sec * 6;
-  
+  let color1 = rgbToHex(red[0], green[0], blue[0]);
+  let color2 = rgbToHex(red[1], green[1], blue[1]);
+
   document.getElementById("time").innerHTML = currentTime;
-  document.body.style.background = `linear-gradient(${gradRotation}deg, ${color1} 0%, ${color2} 100%)`;
+  document.body.style.background = `linear-gradient(${
+    sec * 6
+  }deg, ${color1} 0%, ${color2} 100%)`;
 }
 
 setInterval(showTime, 1000);
