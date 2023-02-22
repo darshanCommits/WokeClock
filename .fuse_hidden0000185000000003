@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fancy Clock</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>WokeClock</h1>
+    </header>
+
+    <main>
+      <div class="time">
+        <h1 id="time"></h1>
+      </div>
+
+     <span class="hidden">color copied to clipboard</span> 
+
+    </main>
+
+
+
+    <footer>
+      <a href="https://github.com/greeedPNG"
+        ><i class="fa-brands fa-github fa-lg"></i>
+      </a>
+
+      <a href="https://www.facebook.com/BaldCaped">
+        <i class="fa-brands fa-facebook fa-lg"></i>
+      </a>
+
+      <a href="https://www.instagram.com/sloth.avi/">
+        <i class="fa-brands fa-instagram fa-lg"></i>
+      </a>
+
+      <a href="t.me/ace_whole">
+        <i class="fa-brands fa-telegram fa-lg"></i>
+      </a>
+      <span>Darshan Kumawat&copy;</span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/7348f1369a.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
