@@ -74,11 +74,29 @@ function showTime() {
   let currentTime = `${hour}:${min}:${sec} ${am_pm}`;
   let color1 = rgbToHex(red[0], green[0], blue[0]);
   let color2 = rgbToHex(red[1], green[1], blue[1]);
+  let bgColor = `linear-gradient(${sec * 6}deg, ${color1} 0%, ${color2} 100%)`;
 
   document.getElementById("time").innerHTML = currentTime;
-  document.body.style.background = `linear-gradient(${
-    sec * 6
-  }deg, ${color1} 0%, ${color2} 100%)`;
+  document.body.style.background = bgColor;
+
+  document.body.addEventListener("click", () => {
+    document.querySelector("main").style.cursor = "default";
+    temp.value = bgColor;
+    temp.select();
+    document.execCommand("copy");
+    setTimeout(() => {
+      document.querySelector(".hidden").style.opacity = "1";
+      document.querySelector("main").style.cursor = "pointer";
+    }, 300);
+  });
+  document.querySelector(".hidden").style.opacity = "0";
+
+
+
+
 }
+
+const temp = document.createElement("input");
+document.body.appendChild(temp);
 
 setInterval(showTime, 1000);
