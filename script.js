@@ -90,10 +90,6 @@ function showTime() {
     }, 300);
   });
   document.querySelector(".hidden").style.opacity = "0";
-
-
-
-
 }
 
 const temp = document.createElement("input");
