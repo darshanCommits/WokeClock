@@ -1,13 +1,12 @@
 function timeToHSL(hour, min, sec) {
-
-  let hue = sec * 6; //a wheel of 360
+  let hue = (sec * 3) % 360; //a wheel of 360
 
   let sat = ((min * 60) / (60 * 60)) * 100; //percentage value
   let lum = ((hour * 60) / (12 * 60)) * 100; //percentage value
 
   //to fix the black screen and white screen issue
-  sat = Math.floor(sat > 80 ? sat / 3 : sat < 20 ? sat + 70 : sat); 
-  lum = Math.floor(lum > 80 ? lum / 3 : lum < 20 ? lum + 70 : lum); 
+  sat = Math.floor(sat > 80 ? sat / 3 : sat < 20 ? sat + 60 : sat);
+  lum = Math.floor(lum > 80 ? lum / 3 : lum < 20 ? lum + 60 : lum);
 
   color = [hue, sat, lum];
   return color;
@@ -29,7 +28,7 @@ function showTime() {
   let am_pm = "AM";
 
   let grad1 = timeToHSL(hour, min, sec);
-  let grad2 = timeToHSL(hour % 12, min % 12, sec % 12);
+  let grad2 = timeToHSL(hour % 6 , min % 6, sec + 60);
 
   let hue = [grad1[0], grad2[0]];
   let lum = [grad1[2], grad2[2]];
