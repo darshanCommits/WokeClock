@@ -56,6 +56,7 @@ function showTime() {
   document.getElementById("time").innerHTML = currentTime;
   document.body.style.background = bgColor;
 
+
   document.body.addEventListener("click", () => {
     document.querySelector("main").style.cursor = "default";
     temp.value = bgColor;

@@ -1,5 +1,6 @@
 :root {
-  --headerFooterSize : 15dvh;
+  --headerFooterSize: 15dvh;
+  --headerFooterSizeVh: 15vh;
 }
 
 body,
@@ -16,7 +17,8 @@ main {
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: calc(100dvh - var(--headerFooterSize)*2 );
+  height: calc(100vh - var(--headerFooterSizeVh) * 2);
+  height: calc(100dvh - var(--headerFooterSize) * 2);
   cursor: pointer;
 }
 
@@ -61,7 +63,7 @@ footer {
   justify-content: center;
   text-align: center;
   border-radius: 30% 30% 0 0;
-  padding-bottom: 1rem;  
+  padding-bottom: 1rem;
 }
 
 .hidden {
