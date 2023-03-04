@@ -16,16 +16,21 @@ main {
   cursor: pointer;
 }
 
+
+
 #time {
   font-size: 5rem;
   color: rgba(31, 28, 28, 0.726);
 }
 
 @media only screen and (max-width: 600px) {
+  main{
+    cursor: default !important;
+  }
+
   #time {
     font-size: 3rem;
     padding: 0 10px 0;
-    background: radial-gradient();
   }
   h1 {
     font-size: 1.7rem;
