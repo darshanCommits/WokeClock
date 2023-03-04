@@ -1,46 +1,18 @@
-function rgbToHex(red, green, blue) {
-  const hexDigits = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-  ];
+function timeToHSL(hour, min, sec) {
 
-  let redQ = hexDigits[Math.floor(red / 16)];
-  let greenQ = hexDigits[Math.floor(green / 16)];
-  let blueQ = hexDigits[Math.floor(blue / 16)];
+  let hue = sec * 6; //a wheel of 360
 
-  let redR = hexDigits[red % 16];
-  let greenR = hexDigits[green % 16];
-  let blueR = hexDigits[blue % 16];
+  let sat = ((min * 60) / (60 * 60)) * 100; //percentage value
+  let lum = ((hour * 60) / (12 * 60)) * 100; //percentage value
 
-  color = "#" + redQ + redR + greenQ + greenR + blueQ + blueR;
+  //to fix the black screen and white screen issue
+  sat = Math.floor(sat > 80 ? sat / 3 : sat < 20 ? sat + 70 : sat); 
+  lum = Math.floor(lum > 80 ? lum / 3 : lum < 20 ? lum + 70 : lum); 
+
+  color = [hue, sat, lum];
   return color;
 }
 
-function timeToRGB(hour, min, sec) {
-  let totalSeconds = hour * 12 + min * 6 + sec * 3; //Total sec as of RN
-  let percentOfDay = totalSeconds / (24 * 6 * 6); //Sec as of RN / Total sec of entire day.
-
-  let red = Math.floor(255 * percentOfDay);
-  let green = Math.floor(255 * (1 - percentOfDay));
-  let blue = Math.floor(128 * Math.abs(percentOfDay - 0.5) * 2);
-
-  color = [red, green, blue];
-  return color;
-}
 function formatTime(i) {
   if (i < 10) {
     i = "0" + i;
@@ -56,11 +28,12 @@ function showTime() {
   let sec = time.getSeconds();
   let am_pm = "AM";
 
-  let grad1 = timeToRGB(hour, min, sec);
-  let grad2 = timeToRGB(hour % 12, min % 12, sec % 12);
-  let red = [grad1[0], grad2[0]];
-  let green = [grad1[1], grad2[1]];
-  let blue = [grad1[2], grad2[2]];
+  let grad1 = timeToHSL(hour, min, sec);
+  let grad2 = timeToHSL(hour % 12, min % 12, sec % 12);
+
+  let hue = [grad1[0], grad2[0]];
+  let lum = [grad1[2], grad2[2]];
+  let sat = [grad1[1], grad2[1]];
 
   if (hour >= 12) {
     hour %= 12;
@@ -68,12 +41,17 @@ function showTime() {
   }
 
   hour = formatTime(hour);
+  if (hour == 00) {
+    hour = 12;
+  }
   min = formatTime(min);
   sec = formatTime(sec);
 
   let currentTime = `${hour}:${min}:${sec} ${am_pm}`;
-  let color1 = rgbToHex(red[0], green[0], blue[0]);
-  let color2 = rgbToHex(red[1], green[1], blue[1]);
+
+  let color1 = `hsl(${hue[0]}, ${sat[0]}%, ${lum[0]}% )`;
+  let color2 = `hsl(${hue[1]}, ${sat[1]}%, ${lum[1]}% )`;
+
   let bgColor = `linear-gradient(${sec * 6}deg, ${color1} 0%, ${color2} 100%)`;
 
   document.getElementById("time").innerHTML = currentTime;
