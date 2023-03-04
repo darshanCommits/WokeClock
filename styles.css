@@ -1,5 +1,5 @@
 :root {
-  --headerFooterSize : 15vh;
+  --headerFooterSize : 15dvh;
 }
 
 body,
@@ -16,7 +16,7 @@ main {
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - var(--headerFooterSize)*2 );
+  height: calc(100dvh - var(--headerFooterSize)*2 );
   cursor: pointer;
 }
 
