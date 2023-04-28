@@ -54,8 +54,9 @@ function showTime() {
   let bgColor = `linear-gradient(${sec * 6}deg, ${color1} 0%, ${color2} 100%)`;
 
   document.getElementById("time").innerHTML = currentTime;
-  document.body.style.background = bgColor;
+  document.body.style.backgroundImage = bgColor;
 
+  requestAnimationFrame(showTime);
 
   document.body.addEventListener("click", () => {
     document.querySelector("main").style.cursor = "default";
@@ -73,4 +74,5 @@ function showTime() {
 const temp = document.createElement("input");
 document.body.appendChild(temp);
 
-setInterval(showTime, 1000);
+document.addEventListener("DOMContentLoaded", showTime)
+

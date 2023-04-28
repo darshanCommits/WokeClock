@@ -3,13 +3,17 @@
   --headerFooterSizeVh: 15vh;
 }
 
-body,
-h1 {
+
+body{
   margin: 0;
   font-family: "Spline Sans Mono", monospace;
   color: rgb(14, 13, 13);
-  overflow: hidden;
+  overflow: hidden;  
+  transition: all 1s ease-in-out;
 }
+
+
+
 
 main {
   display: flex;
@@ -24,6 +28,7 @@ main {
 
 #time {
   font-size: 5rem;
+  transform: rotate3d();
   color: rgba(31, 28, 28, 0.726);
 }
 
